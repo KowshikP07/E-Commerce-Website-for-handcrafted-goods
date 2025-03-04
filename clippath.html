@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>WT</title>
+  <style>
+ body {
+  background-color: seashell;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  position: relative;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  top: 0;
+  padding: 10px 20px;
+  background-color: seashell;
+  z-index: 10;
+}
+
+.topbar {
+  background-color: seashell;
+  width: 100vw;
+  height: 600px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 110px;
+  left: 0;
+  overflow: hidden;
+  display: none;
+}
+
+ul {
+  list-style: none;
+  transition: top 0.5s ease;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 60px;
+  color: darkgreen;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-fill-color: pink;
+  letter-spacing: 3px;
+}
+
+ul li a i {
+  font-size: 40px;
+  padding-right: 10px;
+}
+
+.image {
+  position: absolute;
+  top: -500px;
+  transition: top 0.5s ease;
+  height: 500px;
+  width: 250px;
+  background-color: aliceblue;
+  margin-top: 4%;
+  right: 25%;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.toggle {
+  position: absolute;
+  height: 40px;
+  width: 38px;
+  background-color: pink;
+  border: 1px solid darkgreen;
+  top: 20px;
+  left: 10%;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.navbar .common {
+  position: absolute;
+  height: 3px;
+  width: 30px;
+  background-color: darkgreen;
+  transition: all 0.3s ease;
+}
+
+.navbar .line-top {
+  top: 30%;
+  left: 10%;
+}
+
+.navbar .line-middle {
+  top: 50%;
+  left: 10%;
+}
+
+.navbar .line-last {
+  top: 70%;
+  left: 10%;
+}
+
+input:checked ~ .toggle .line-top {
+  left: 3px;
+  top: 18px;
+  transform: rotate(45deg);
+}
+
+input:checked ~ .toggle .line-middle {
+  opacity: 0;
+}
+
+input:checked ~ .toggle .line-last {
+  left: 3px;
+  top: 18px;
+  transform: rotate(-45deg);
+}
+
+.show {
+  top: 5%;
+}
+
+.image {
+  top: -25px;
+}
+
+.navbar .button {
+  height: 42px;
+  width: 150px;
+  background-color: #00340b;
+  position: absolute;
+  top: 20px;
+  left: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .button a{
+  text-decoration: none;
+  color: white;
+}
+
+.navbar .button h3 {
+  color: white;
+  text-transform: uppercase;
+}
+
+.logo {
+  height: 80px;
+  width: 280px;
+  background-color: #00340b;
+  position: absolute;
+  top: 20px;
+  left: 43%;
+}
+
+.log {
+  height: 50px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 5%;
+}
+
+.signin,
+.signup {
+  height: 42px;
+  width: 125px;
+  background-color: #00340b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin h3,
+.signup h3 {
+  color: white;
+  text-transform: uppercase;
+}
+
+.log span {
+  height: 2px;
+  width: 40px;
+  transform: rotate(-60deg);
+  background-color: #00340b;
+}
+
+.maincontent {
+  width: 100vw;
+  height: 80vh;
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.maincontent .middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40vw;
+  height: auto;
+}
+
+.maincontent .middle .slogan {
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.maincontent .middle .slogan p {
+  font-size: 35px;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke: 2px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.maincontent .middle .searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #00340b;
+  background-color: pink;
+}
+
+.maincontent .middle .searchbar .search {
+  height: 100%;
+  width: 100%;
+  border-color: transparent;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.maincontent .middle .searchbar i {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #00340b;
+  color: pink;
+  font-size: 25px;
+}
+.images{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  width:100%;
+  position: relative;
+  top:-450px;
+}
+.images .decor{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.images .decor .img1{
+  height:450px;
+  width:20%;
+  transform: rotate(-8deg);
+  position: absolute;
+  left:3%;
+  top:7%;
+}
+.images .decor .img2{
+  height:450px;
+  width:20%;
+  transform: rotate(8deg);
+  position: absolute;
+  top:7%;
+  right:1%;
+}
+.images .decor .img3{
+  height:450px;
+  width:20%;
+  position: absolute;
+  top:550px;
+  left:10%;
+}
+.images .decor .img4{
+  height:450px;
+  width:20%;
+  position: absolute;
+  top:550px;
+  right:8%;
+}
+.btn6 {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: pink;
+    background: transparent;
+    border: 4px solid transparent;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+}
+.btn6::before, 
+.btn6::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 0;
+    background: pink;
+    transition: width 0.4s cubic-bezier(.5, .24, 0, 1);
+}
+
+.btn6::before {
+    left: 0;
+    bottom: 0;
+}
+
+.btn6::after {
+    right: 0;
+    top: 0;
+}
+
+.btn6:hover::before, 
+.btn6:hover::after {
+    width: 100%;
+}
+
+.btn6:hover {
+    border-left: 4px solid brown;
+    border-right: 4px solid brown;
+    border-top: 4px solid brown;
+    border-bottom: 4px solid brown;
+    background: rgba(96, 152, 255, 0.1);
+    color: pink;
+}
+.tag{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top:650px;
+  flex-direction: column;
+  font-size: 25px;
+  font-weight: 1000;
+  text-transform: uppercase;
+}
+.toprating{
+  height:350px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toprating .editorchoice{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width:100%;
+  flex-wrap: wrap;
+}
+.toprating .editorchoice .picks{
+  flex-basis: 20%;
+  height:95%;
+  background-color: white;
+  margin: 1px 5px;
+  border:2px solid #00340b;
+}
+.toprating .editorchoice .picks .edimg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:70%;
+  width:100%;
+  background-color: black;
+}
+.toprating .editorchoice .picks .edimg img{
+  height:100%;
+  width:90%;
+}
+.toprating .editorchoice .picks .one,.toprating .editorchoice .picks .one,.toprating .editorchoice .picks .one,.toprating .editorchoice .picks .one{
+  transition: all 1s;
+}
+.toprating .editorchoice .picks .one:hover,.toprating .editorchoice .picks .two:hover,.toprating .editorchoice .picks .three:hover,.toprating .editorchoice .picks .four:hover{
+  background-color: white;
+}
+.picks .prodet{
+  display:flex;
+  align-items:flex-start;
+  justify-content: start;
+  flex-direction: column;
+  height: 10%;
+  width:100%;
+}
+.picks .prodet h3{
+  font-size: 11px;
+  color:black;
+  font-weight: 200;
+  margin-left: 10%;
+}
+.fav{
+  height:10%;
+  width:100%;
+  background-color: whitesmoke;
+  margin-top: 11%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fav .cart{
+  height:100%;
+  width:50%;
+  background-color: pink;
+  border-right: 1px solid black;
+  border-top: 2px solid black;
+  transition: all 0.5s;
+}
+.fav .heart{
+  height:100%;
+  width:50%;
+  background-color: pink;
+  border-left: 1px solid black;
+  border-top: 2px solid black;  
+  transition: all 0.5s;
+}
+.fav i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fav #icon{
+  color:orangered;
+}
+.fav .heart:hover,.fav .cart:hover{
+  background-color: white;
+  cursor: pointer;
+}
+.chi{
+  top:750px;
+}
+.tag .choice{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width:100%;
+}
+.tag .choice .button{
+  padding: 25px 25px;
+  background-color: seashell;
+  border:1px solid black;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.tag .choice .button:hover{
+  background-color: #00340b;
+  color: white;
+}
+#google_translate_element{
+  position: relative;
+  left:25%;
+  top:15px;
+}
+footer{
+  height:350px;
+  width:100%;
+  position: relative;
+  bottom:-950px;
+  display: flex;
+  flex-direction: column;
+}
+footer .foot{
+  height: 50%;
+  width:100%;
+  background-color: #00340b;
+}
+footer .foot2{
+  height: 50%;
+  width:100%;
+  background-color: #00340b;
+}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <div class="navbar">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="toggle">
+        <span class="line-top common"></span>
+        <span class="line-middle common"></span>
+        <span class="line-last common"></span>
+      </label>
+      <div class="topbar">
+        <ul id="ul">
+          <li><a href="#"><i class="bx bxs-home"></i>home</a></li>
+          <li><a href="#"><i class="bx bxs-category"></i>categories</a></li>
+          <li><a href="cart.html"><i class="bx bxs-cart"></i>cart</a></li>
+          <li><a href="fav.html"><i class="bx bxs-bookmark-heart"></i>wishlist</a></li>
+          <li><a href="#"><i class="bx bxs-package"></i>orders</a></li>
+          <li><a href="#"><i class="bx bxs-store-alt" ></i>Dealers</a></li>
+        </ul>
+        <div class="image"></div>
+      </div>
+      <div id="google_translate_element"></div>
+      <div class="button"><h3><a href="story.html">stories</a></h3></div>
+      <div class="logo"></div>
+      <div class="log">
+        <div class="signin"><h3>sign in</h3></div>
+        <span></span>
+        <div class="signup"><h3>sign up</h3></div>
+      </div>
+    </div>
+  </div>
+  <div class="maincontent">
+    <div class="middle"><div class="slogan">
+      <div class="searchbar"><input type="text" class="search" placeholder="search"><i class="bx bx-search" ></i></div>
+      <p>Every Piece Tells a Story – Directly from the Maker’s Hands.</p></div>
+    </div>
+  </div>
+  <div class="images">
+    <div class="decor">
+      <img class="img1 btn6" src="images/baskets.jpeg" alt="basket">
+      <img class="img2 btn6" src="images/hangings.jpeg" alt="basket">
+      <img class="img3 btn6" src="images/clothes.jpeg" alt="basket">
+      <img class="img4 btn6" src="images/accessories.jpeg" alt="basket">
+    </div>
+  </div>
+  <div class="tag"><div class="choice"><h1>Editor's Choice</h1><div class="button">see all</div></div>
+  <div class="toprating">
+    <div class="editorchoice"></div>
+    </div>
+  </div>
+<div class="tag chi"><div class="choice"><h1>For children</h1><div class="button">see all</div></div>
+  <div class="toprating">
+    <div class="editorchoice"></div>
+  </div>
+</div>
+<footer>
+  <div class="foot"></div>
+  <div class="foot2"></div>
+</footer>
+  <script>
+    let toggle = document.querySelector("#menu-toggle");
+    let topbar = document.querySelector(".topbar");
+    let ul = document.querySelector("#ul");
+    let log = document.querySelector(".log");
+    let bg = true;
+
+    const show = () => {
+      if (bg) {
+        if (topbar.style.display === "none" || topbar.style.display === "") {
+          ul.classList.add("show");
+          topbar.style.display = "block";
+          topbar.style.backgroundColor = "#A7C796";
+        }
+      } else {
+        ul.classList.remove("show");
+        topbar.style.display = "none";
+        topbar.style.backgroundColor = "seashell";
+      }
+      bg = !bg;
+    };
+    toggle.addEventListener('click', show);
+  </script>
+    <script>
+fetch('products.json')
+  .then(response => response.json())
+  .then(pro => {
+    console.log("Fetched JSON Data:", pro);
+
+    if (!pro || !pro.product || !pro.product1) {
+      throw new Error("Products data is missing or undefined.");
+    }
+
+    let containers = document.getElementsByClassName("editorchoice");
+    if (containers.length < 2) {
+      throw new Error("Not enough '.editorchoice' containers found.");
+    }
+
+    let container = containers[0];
+    let container1 = containers[1];
+
+    // Function to create product cards
+    function createProductItem(product, targetContainer) {
+      let item = document.createElement("div");
+      let edimg = document.createElement("div");
+      let prodet = document.createElement("div");
+      item.classList.add("picks");
+      edimg.classList.add("edimg", "one");
+      item.appendChild(edimg);
+      targetContainer.appendChild(item);
+      prodet.classList.add("prodet");
+      item.appendChild(prodet);
+      edimg.innerHTML = `<img src="${product.image}" alt="${product.name}" width="150">`;
+      prodet.innerHTML = `<h3>${product.name}</h3><h3>${product.price}</h3>`;
+
+      let fav = document.createElement("div");
+      let cart = document.createElement("div");
+      let heart = document.createElement("div");
+      fav.classList.add("fav");
+      cart.classList.add("cart");
+      heart.classList.add("heart");
+      item.appendChild(fav);
+      fav.appendChild(heart);
+      fav.appendChild(cart);
+
+      cart.innerHTML = `<i class='bx bxs-cart' data-id="${product.id}"></i>`;
+      heart.innerHTML = `<i class='bx bxs-heart'></i>`;
+    }
+
+    // Loop through products and append to the correct container
+    pro.product.forEach(product => createProductItem(product, container));
+    pro.product1.forEach(product => createProductItem(product, container1));
+
+    // Add event listener to cart buttons
+    document.querySelectorAll('.bxs-cart').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const productId = event.target.dataset.id;
+        addToCart(productId, pro.product.concat(pro.product1));
+      });
+    });
+
+  })
+  .catch(error => console.error('Error fetching JSON:', error));
+
+
+  function addToCart(productId, products) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const product = products.find(p => p.id == productId);
+  
+  if (product) {
+    // Check if product already exists in cart
+    const existingProductIndex = cart.findIndex(item => item.id == productId);
+    
+    if (existingProductIndex >= 0) {
+      // Product exists, increase quantity
+      cart[existingProductIndex].quantity = (cart[existingProductIndex].quantity || 1) + 1;
+    } else {
+      // Product doesn't exist, add to cart with quantity 1
+      product.quantity = 1;
+      cart.push(product);
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(`Added to cart: ${product.name}`);
+    
+    // Show alert
+    alert(`${product.name} has been added to your cart!`);
+    
+    // Update cart count in header
+    updateCartCount();
+  }
+}
+</script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+          new google.translate.TranslateElement(
+              {pageLanguage: 'en'},
+              'google_translate_element'
+          );
+  
+          setTimeout(() => {
+              const translateContainer = document.getElementById("google_translate_element");
+              translateContainer.style.height = "40px";
+              translateContainer.style.width = "240px";
+              translateContainer.style.borderRadius = "10px";
+              translateContainer.style.backgroundColor="green";
+              const translateSelect = translateContainer.querySelector("select");
+              if (translateSelect) {
+                  translateSelect.style.backgroundColor = "#ffffff";
+                  translateSelect.style.fontFamily = "Arial, sans-serif";
+                  translateSelect.style.fontSize = "16px";
+                  translateSelect.style.padding = "6px 12px";
+                  translateSelect.style.border = "1px solid #ccc";
+                  translateSelect.style.borderRadius = "5px";
+                  translateSelect.style.color = "#333";
+                  translateSelect.style.width = "100%";
+              }
+          }, 100);
+      }
+  </script>
+</body>
+</html>
